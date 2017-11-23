@@ -30,7 +30,7 @@ export default class RegForm extends React.Component {
     submitUser(event) {
         event.preventDefault();
 
-        return axios.post('/register', {
+        return axios.post('/add/user', {
             login: this._getComponentValue('login'),
             email: this._getComponentValue('email'),
             password: this._getComponentValue('password')

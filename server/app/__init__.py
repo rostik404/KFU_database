@@ -28,14 +28,15 @@ class App(object):
         app.config.from_object(app_config[config_name or 'production'])
         app.config.from_pyfile('config.py')
 
+
         self.db = get_db(app)
         self.init_login_manager(app)
 
         from routes import set_routes
         set_routes(app)
         migrate = Migrate(app, self.db)
-
-        # from app import models
+        self.db.create_all()
+        self.db.session.commit()
 
         return app
 

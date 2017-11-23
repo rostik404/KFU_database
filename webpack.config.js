@@ -22,8 +22,11 @@ const config = {
                     fallback: 'style-loader',
                     use: 'css-loader',
                 })
-            },
+            }
         ]
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin('css/[name].css'),
+    ]
 };
 module.exports = config;

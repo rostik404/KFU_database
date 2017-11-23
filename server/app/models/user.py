@@ -2,7 +2,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import login_manager
-from db import get_db
+from app.db import get_db
 
 db = get_db()
 
@@ -44,15 +44,6 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User: {}>'.format(self.login)
 
-# def add_user():
-#     from app.models import User
-#     a = User(email='qwr', login='ret')
-#     db.session.query(User).filter(User.email=='qwr').delete()
-#     db.session()
-#     db.session.add(a)
-#     db.session.commit()
-
-# Set up user_loader
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
